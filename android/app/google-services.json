@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1014492768641",
+    "firebase_url": "https://portunhol-18bed.firebaseio.com",
+    "project_id": "portunhol-18bed",
+    "storage_bucket": "portunhol-18bed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1014492768641:android:43e2dc0c016fe8d5",
+        "android_client_info": {
+          "package_name": "com.example.portunhol"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1014492768641-j7rdg1lkkfgu1rph5mb0koul49poqlsp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYhCzsUniFoKlM8Kb2A6wbRdky0n-omLY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1014492768641-j7rdg1lkkfgu1rph5mb0koul49poqlsp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

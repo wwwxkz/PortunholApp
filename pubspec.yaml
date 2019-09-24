@@ -1,0 +1,31 @@
+name: portunhol
+description: A new Flutter project.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  firebase_core: ^0.4.0+8
+  # firebase_admob: ^0.9.0+3
+  firebase_auth: ^0.14.0+2
+  firebase_database: ^3.0.5
+  flutter_tts:
+  path_provider: ^1.3.0
+  intl: ^0.16.0
+
+
+  cupertino_icons: ^0.1.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  translator: ^0.1.2
+
+flutter:
+
+  uses-material-design: true
+
