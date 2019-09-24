@@ -16,4 +16,4 @@
 <img src="https://github.com/wxkz/PortunholApp/blob/master/README/11.png" height="500" width="250">
 
  # Firebase rules
- <img src="https://github.com/wxkz/PortunholApp/blob/master/README/rules.png">
+ <img src="https://github.com/wxkz/PortunholApp/blob/master/README/rules.jpeg">
