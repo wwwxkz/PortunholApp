@@ -106,10 +106,6 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
     _isIos = Theme.of(context).platform == TargetPlatform.iOS;
     return new Scaffold(
         backgroundColor: Colors.white,
-        appBar: new AppBar(
-          title: Text('Login', style: TextStyle(color: Colors.blueAccent, fontSize: 26)),
-          backgroundColor: Colors.white,
-        ),
         body: Stack(
           children: <Widget>[
             _showBody(),
@@ -142,7 +138,7 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
 
   Widget _showBody() {
     return new Container(
-        // padding: EdgeInsets.only(top: 100, left: 16, right: 16),
+        //padding: EdgeInsets.only(top: 100, left: 16, right: 16),
         padding: EdgeInsets.all(16.0),
         child: _formMode == FormMode.LOGIN
             ? new Form(
@@ -150,7 +146,7 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
                 child: new ListView(
                   shrinkWrap: true,
                   children: <Widget>[
-                    // _showLogo(),
+                    _showTitle(),
                     _showEmailInput(),
                     _showPasswordInput(),
                     _showPrimaryButton(),
@@ -177,6 +173,21 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
               ));
   }
 
+  Widget _showTitle() {
+    return new Container(
+        child: Column(
+      children: <Widget>[
+        SizedBox(height: 40),
+        Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              'Login',
+              style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.w600),
+            )),
+      ],
+    ));
+  }
+
   Widget _showErrorMessage() {
     if (_errorMessage.length > 0 && _errorMessage != null) {
       return new Text(
@@ -194,35 +205,15 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
     }
   }
 
-  // Widget _showLogo() {
-  //   return new Container(
-  //       child: _formMode == FormMode.LOGIN
-  //           ? new Form(
-  //               child: Padding(
-  //                 padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
-  //                 // child: 
-  //               ),
-  //             )
-  //           : new Form(
-  //               child: Padding(
-  //                 padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
-  //                 // child: 
-  //               ),
-  //             )
-  //             );
-  // }
-
   Widget _showNameInput() {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
+      padding: const EdgeInsets.fromLTRB(0.0, 40.0, 0.0, 0.0),
       child: new TextFormField(
         maxLines: 1,
         keyboardType: TextInputType.emailAddress,
         autofocus: false,
         decoration: new InputDecoration(
             focusedBorder: InputBorder.none,
-            filled: true,
-            fillColor: Colors.grey[300],
             hintText: 'Nome',
             icon: new Icon(
               Icons.person,
@@ -244,8 +235,6 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
         autofocus: false,
         decoration: new InputDecoration(
             focusedBorder: InputBorder.none,
-            filled: true,
-            fillColor: Colors.grey[300],
             hintText: 'Numero',
             icon: new Icon(
               Icons.smartphone,
@@ -267,8 +256,6 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
         autofocus: false,
         decoration: new InputDecoration(
             focusedBorder: InputBorder.none,
-            filled: true,
-            fillColor: Colors.grey[300],
             hintText: 'Email',
             icon: new Icon(
               Icons.mail,
@@ -290,9 +277,7 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
         autofocus: false,
         decoration: new InputDecoration(
             focusedBorder: InputBorder.none,
-            filled: true,
-            fillColor: Colors.grey[300],
-            hintText: 'Senha',
+            hintText: 'Password',
             icon: new Icon(
               Icons.lock,
               color: Colors.grey,
@@ -307,7 +292,7 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
   Widget _showSecondaryButton() {
     return new FlatButton(
       child: _formMode == FormMode.LOGIN
-          ? new Text('Criar conta',
+          ? new Text('Create account',
               style: new TextStyle(
                   fontSize: 18.0,
                   fontWeight: FontWeight.w300,
@@ -330,12 +315,18 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
           height: 50.0,
           child: new RaisedButton(
             shape: new RoundedRectangleBorder(
-                borderRadius: new BorderRadius.circular(10.0)),
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(20.0),
+                topLeft: Radius.circular(100.0),
+                bottomRight: Radius.circular(100.0),
+                bottomLeft: Radius.circular(20.0),
+              ),
+            ),
             color: Colors.blueAccent,
             child: _formMode == FormMode.LOGIN
-                ? new Text('Entrar',
+                ? new Text('Login',
                     style: new TextStyle(fontSize: 20.0, color: Colors.white))
-                : new Text('Criar conta',
+                : new Text('Creat account',
                     style: new TextStyle(fontSize: 20.0, color: Colors.white)),
             onPressed: _validateAndSubmit,
           ),

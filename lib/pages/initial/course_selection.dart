@@ -19,30 +19,22 @@ class MyApp extends StatelessWidget {
   final VoidCallback onSignedOut;
   final String userId;
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      title: 'Portunhol',
       theme: new ThemeData(fontFamily: 'Raleway'),
-      home: new ListPage(
-          title: 'Línguas',
-          auth: auth,
-          userId: userId,
-          onSignedOut: onSignedOut),
-      // home: DetailPage(),
+      home: new ListPage(auth: auth, userId: userId, onSignedOut: onSignedOut),
     );
   }
 }
 
 class ListPage extends StatefulWidget {
-  ListPage({Key key, this.title, this.auth, this.userId, this.onSignedOut})
+  ListPage({Key key, this.auth, this.userId, this.onSignedOut})
       : super(key: key);
 
   final BaseAuth auth;
   final VoidCallback onSignedOut;
   final String userId;
-  final String title;
 
   @override
   _ListPageState createState() => _ListPageState();
@@ -60,41 +52,56 @@ class _ListPageState extends State<ListPage> {
   @override
   Widget build(BuildContext context) {
     ListTile makeListTile(Lesson lesson) => ListTile(
-          contentPadding:
-              EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-          leading: Container(
-            padding: EdgeInsets.only(right: 12.0),
-            child: Icon(Icons.check_circle, color: Colors.grey[850], size: 52),
-          ),
-          title: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                lesson.title,
-                style: TextStyle(color: Colors.grey[850], fontWeight: FontWeight.w600, fontSize: 20)
-              ),
-              Row(
-                children: <Widget>[
-                Text(
-                  '65 ',
-                  style: TextStyle(
-                    color: Colors.green, fontWeight: FontWeight.w600, fontSize: 16),
+          contentPadding: EdgeInsets.symmetric(horizontal: -20.0, vertical: 10),
+          title: Container(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(lesson.title,
+                        style: TextStyle(
+                            color: Colors.grey[800],
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18)),
+                    SizedBox(height: 8),
+                    Row(
+                      children: <Widget>[
+                        Text(
+                          '65 ',
+                          style: TextStyle(
+                              color: Colors.green,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16),
+                        ),
+                        Text(
+                          '22 ',
+                          style: TextStyle(
+                              color: Colors.blueAccent,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16),
+                        ),
+                        Text(
+                          '9472',
+                          style: TextStyle(
+                              color: Colors.grey[600],
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16),
+                        ),
+                      ],
+                    )
+                  ],
                 ),
-                  Text(
-                  '22 ',
-                  style: TextStyle(
-                    color: Colors.blueAccent, fontWeight: FontWeight.w600, fontSize: 16),
+                IconButton(
+                  icon: new Icon(Icons.arrow_forward, color: Colors.black),
+                  //onPressed: () => Navigator.of(context).pop(),
                 ),
-                  Text(
-                  '9472',
-                  style: TextStyle(
-                    color: Colors.grey[600], fontWeight: FontWeight.w600, fontSize: 16),
-                ),
-              ],)
-            ],
+              ],
+            ),
           ),
           onTap: () {
-            if (lesson.title == "Inglês") {
+            if (lesson.title == "English") {
               Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -116,23 +123,26 @@ class _ListPageState extends State<ListPage> {
           },
         );
 
-    Card makeCard(Lesson lesson) => Card(
-         
-          margin: new EdgeInsets.symmetric(vertical: 6.0),
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-            ),
-            child: makeListTile(lesson),
+    Container makeCard(Lesson lesson) => Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
           ),
+          child: makeListTile(lesson),
         );
 
     final makeBody = Container(
-        color: Colors.grey[300],
-        padding: EdgeInsets.only(top: 10, left: 0, right: 0),
+        color: Colors.white,
+        margin: EdgeInsets.symmetric(vertical: 60.0, horizontal: 20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            Text(
+              'Decks',
+              style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 24),
+            ),
             ListView.builder(
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
@@ -144,86 +154,71 @@ class _ListPageState extends State<ListPage> {
           ],
         ));
 
-
-    final topAppBar = AppBar(
-      backgroundColor: Colors.white,
-      title: Text(
-        'Decks',
-        style: TextStyle(color: Colors.blueAccent, fontSize: 26),
+    final bottomAppBar = BottomAppBar(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: <Widget>[
+          IconButton(
+            iconSize: 30,
+            color: Colors.blueAccent,
+            icon: Icon(Icons.home),
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => StudyPage()));
+            },
+          ),
+          IconButton(
+            iconSize: 30,
+            color: Colors.blueAccent,
+            icon: Icon(Icons.people),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => RankPage(
+                            userId: widget.userId,
+                            auth: widget.auth,
+                            onSignedOut: widget.onSignedOut,
+                          )));
+            },
+          ),
+          IconButton(
+            iconSize: 30,
+            color: Colors.blueAccent,
+            icon: Icon(Icons.shopping_cart),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => StorePage(
+                            userId: widget.userId,
+                            auth: widget.auth,
+                            onSignedOut: widget.onSignedOut,
+                          )));
+            },
+          ),
+          IconButton(
+            iconSize: 30,
+            color: Colors.blueAccent,
+            icon: Icon(Icons.person),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ProfilePage(
+                            userId: widget.userId,
+                            auth: widget.auth,
+                            onSignedOut: widget.onSignedOut,
+                          )));
+            },
+          )
+        ],
       ),
-      bottom: PreferredSize(
-        preferredSize: Size.fromHeight(50.0),
-        child: Row(   
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            IconButton(
-              iconSize: 30,
-              color: Colors.blueAccent,
-              icon: Icon(Icons.home),
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => StudyPage()));
-              },
-            ),
-            IconButton(
-              iconSize: 30,
-              color: Colors.blueAccent,
-              icon: Icon(Icons.people),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => RankPage(
-                              userId: widget.userId,
-                              auth: widget.auth,
-                              onSignedOut: widget.onSignedOut,
-                            )));
-              },
-            ),
-            IconButton(
-              iconSize: 30,
-              color: Colors.blueAccent,
-              icon: Icon(Icons.shopping_cart),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => StorePage(
-                              userId: widget.userId,
-                              auth: widget.auth,
-                              onSignedOut: widget.onSignedOut,
-                            )));
-              },
-            ),
-            IconButton(
-              iconSize: 30,
-              color: Colors.blueAccent,
-              icon: Icon(Icons.person),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ProfilePage(
-                              userId: widget.userId,
-                              auth: widget.auth,
-                              onSignedOut: widget.onSignedOut,
-                            )));
-              },
-            )
-          ],
-        ),
-      ),
-      actions: <Widget>[
-        IconButton(
-          icon: Icon(Icons.search, color: Colors.blueAccent),
-          onPressed: () {},
-        )
-      ],
     );
 
     return Scaffold(
       body: makeBody,
-      appBar: topAppBar,
+      bottomNavigationBar: bottomAppBar,
     );
   }
 }
@@ -231,10 +226,19 @@ class _ListPageState extends State<ListPage> {
 List getLessons() {
   return [
     Lesson(
-      title: "Inglês",
+      title: "English",
     ),
     Lesson(
-      title: "Crie seu deck",
+      title: "French",
+    ),
+    Lesson(
+      title: "Portuguese",
+    ),
+    Lesson(
+      title: "Spanish",
+    ),
+    Lesson(
+      title: "Create your own deck",
     ),
   ];
 }

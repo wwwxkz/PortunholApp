@@ -78,6 +78,11 @@ class _RootPageState extends State<RootPage> {
         break;
       case AuthStatus.LOGGED_IN:
         if (_userId.length > 0 && _userId != null) {
+          //return new Main(
+            //userId: _userId,
+            //auth: widget.auth,
+            //onSignedOut: _onSignedOut,
+          //);
           return new MyApp(
             userId: _userId,
             auth: widget.auth,
