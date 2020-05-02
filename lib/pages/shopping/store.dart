@@ -18,33 +18,18 @@ class StorePage extends StatefulWidget {
 }
 
 class _StorePageState extends State<StorePage> {
-  // List _noteList;
-  // var index = 0;
-
-  // final FirebaseDatabase _database = FirebaseDatabase.instance;
-
   StreamSubscription<Event> _onNoteAddedSubscription;
   StreamSubscription<Event> _onNoteChangedSubscription;
 
-  // Query _noteQuery;
-
   bool _isEmailVerified = false;
 
-// Firebase config
   @override
   void initState() {
     super.initState();
 
     _checkEmailVerification();
-
-    // _noteList = new List();
-    // _noteQuery = _database.reference().child("users/" + widget.userId + "/");
-    // _onNoteAddedSubscription = _noteQuery.onChildAdded.listen(_onEntryAdded);
-    // _onNoteChangedSubscription =
-    //     _noteQuery.onChildChanged.listen(_onEntryChanged);
   }
 
-// Email verification
   void _checkEmailVerification() async {
     _isEmailVerified = await widget.auth.isEmailVerified();
     if (!_isEmailVerified) {
@@ -112,37 +97,16 @@ class _StorePageState extends State<StorePage> {
     super.dispose();
   }
 
-// Real time database
-
-  // _onEntryChanged(Event event) {
-  //   var oldEntry = _noteList.singleWhere((entry) {
-  //     return entry.key == event.snapshot.key;
-  //   });
-
-  //   setState(() {
-  //     _noteList[_noteList.indexOf(oldEntry)] = event.snapshot;
-  //   });
-  // }
-
-  // _onEntryAdded(Event event) {
-  //   setState(() {
-  //     _noteList.add(event.snapshot.value);
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
         appBar: new AppBar(
-                 leading: new IconButton(
-          icon: new Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-          backgroundColor: Colors.white,
-          title: new Text(
-            'Shopping',
-            style: TextStyle(color: Colors.blueAccent, fontSize: 26),
+          elevation: 1,
+          leading: new IconButton(
+            icon: new Icon(Icons.arrow_back, color: Colors.black),
+            onPressed: () => Navigator.of(context).pop(),
           ),
+          backgroundColor: Colors.white,
         ),
         body: Stack(
           children: <Widget>[
@@ -153,20 +117,30 @@ class _StorePageState extends State<StorePage> {
 
   Widget _showBody() {
     return new Container(
-      color: Colors.grey[300],
+      margin: EdgeInsets.symmetric(vertical: 30.0, horizontal: 20.0),
+      //color: Colors.grey[300],
       padding: EdgeInsets.only(bottom: 200),
       child: _showNoteList(),
     );
   }
 
-  // Show note list
   Widget _showNoteList() {
     return Container(
-      alignment: Alignment.center,
-      child: Text(
-        "Em breve :)",
-        style: TextStyle(fontSize: 28, color: Colors.black),
-      )
+      alignment: Alignment.topLeft,
+      child: Column(
+        children: <Widget>[
+          Text(
+            'Decks',
+            style: TextStyle(
+                color: Colors.black, fontWeight: FontWeight.w600, fontSize: 24),
+          ),
+          SizedBox(height: 10),
+          Text(
+            "Em breve",
+            style: TextStyle(fontSize: 18, color: Colors.grey),
+          ),
+        ],
+      ),
     );
   }
 }

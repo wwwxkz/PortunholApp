@@ -236,15 +236,12 @@ class _StudyPageState extends State<StudyPage> {
     return _formMode == FormMode.LOGIN
         ? new Scaffold(
             appBar: new AppBar(
+              elevation: 1,
               leading: new IconButton(
                 icon: new Icon(Icons.arrow_back, color: Colors.black),
                 onPressed: () => Navigator.of(context).pop(),
               ),
               backgroundColor: Colors.white,
-              title: new Text(
-                'Decks',
-                style: TextStyle(color: Colors.blueAccent, fontSize: 26),
-              ),
             ),
             body: Stack(
               children: <Widget>[
@@ -259,10 +256,6 @@ class _StudyPageState extends State<StudyPage> {
                 onPressed: () => Navigator.of(context).pop(),
               ),
               backgroundColor: Colors.white,
-              title: new Text(
-                'Decks',
-                style: TextStyle(color: Colors.blueAccent, fontSize: 26),
-              ),
               actions: <Widget>[
                 IconButton(
                   icon: Icon(Icons.play_arrow),
@@ -281,7 +274,7 @@ class _StudyPageState extends State<StudyPage> {
 
   Widget _showBody() {
     return new Scaffold(
-        backgroundColor: Colors.grey[300],
+        //backgroundColor: Colors.grey[300],
         body: _formMode == FormMode.LOGIN
             ? new Form(
                 key: _formKey,
@@ -364,9 +357,15 @@ class _StudyPageState extends State<StudyPage> {
           width: double.infinity,
           child: new RaisedButton(
               shape: new RoundedRectangleBorder(
-                  borderRadius: new BorderRadius.circular(30.0)),
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(20.0),
+                  topLeft: Radius.circular(100.0),
+                  bottomRight: Radius.circular(100.0),
+                  bottomLeft: Radius.circular(20.0),
+                ),
+              ),
               color: Colors.blueAccent,
-              child: Text('Estudar',
+              child: Text('Study',
                   style: new TextStyle(fontSize: 20.0, color: Colors.white)),
               onPressed: () {
                 _formMode == FormMode.LOGIN

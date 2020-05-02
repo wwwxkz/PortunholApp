@@ -230,7 +230,8 @@ class _StudyYourSignUpPageState extends State<StudyYourSignUpPage> {
   _addNewNote(String front, String back) {
     if (front.length > 0) {
       var today = new DateFormat.yMd().format(new DateTime.now());
-      Note note = new Note(front.toString(), back.toString(), 0, 0,today.toString());
+      Note note =
+          new Note(front.toString(), back.toString(), 0, 0, today.toString());
       _database
           .reference()
           .child("users/" + widget.userId + "/notes/")
@@ -238,26 +239,27 @@ class _StudyYourSignUpPageState extends State<StudyYourSignUpPage> {
           .set(note.toJson());
     }
 
-  // final birthday = DateTime(1967, 10, 12); // equal false
-  // final date2 = DateTime.now();
-  // print(date2.difference(birthday).isNegative);
+    // final birthday = DateTime(1967, 10, 12); // equal false
+    // final date2 = DateTime.now();
+    // print(date2.difference(birthday).isNegative);
 
-  // if( is true { passed })
-  // if false no
+    // if( is true { passed })
+    // if false no
   }
 
   _updateNote(Note note, bool understood) {
-    var days = note.days + note.days~/2.toInt();
+    var days = note.days + note.days ~/ 2.toInt();
     if (understood == true) {
       note.understood += 1;
-      if(note.days == null || note.days < 2){
+      if (note.days == null || note.days < 2) {
         note.days = 2;
       }
-      if(note.days >= 2){
-        note.days += note.days~/2.toInt();
+      if (note.days >= 2) {
+        note.days += note.days ~/ 2.toInt();
       }
-      days = note.days + note.days~/2.toInt();
-      var date = new DateFormat.yMd().format(new DateTime.now().add(new Duration(days: days)));
+      days = note.days + note.days ~/ 2.toInt();
+      var date = new DateFormat.yMd()
+          .format(new DateTime.now().add(new Duration(days: days)));
       note.today = date;
       if (note != null) {
         _database
@@ -268,7 +270,8 @@ class _StudyYourSignUpPageState extends State<StudyYourSignUpPage> {
       }
     } else {
       note.days = 1;
-      var date = new DateFormat.yMd().format(new DateTime.now().add(new Duration(days: note.days)));
+      var date = new DateFormat.yMd()
+          .format(new DateTime.now().add(new Duration(days: note.days)));
       note.today = date;
       note.understood = 0;
       if (note != null) {
@@ -481,14 +484,11 @@ class _StudyYourSignUpPageState extends State<StudyYourSignUpPage> {
     return _formMode == FormMode.LOGIN
         ? new Scaffold(
             appBar: new AppBar(
+              elevation: 1,
               backgroundColor: Colors.white,
-                leading: new IconButton(
-          icon: new Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-              title: new Text(
-                'Your Deck',
-              style: TextStyle(color: Colors.blueAccent, fontSize: 26),
+              leading: new IconButton(
+                icon: new Icon(Icons.arrow_back, color: Colors.black),
+                onPressed: () => Navigator.of(context).pop(),
               ),
             ),
             body: _showBody(),
@@ -502,14 +502,11 @@ class _StudyYourSignUpPageState extends State<StudyYourSignUpPage> {
             ))
         : new Scaffold(
             appBar: new AppBar(
+              elevation: 1,
               backgroundColor: Colors.white,
-                leading: new IconButton(
-          icon: new Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-              title: new Text(
-                'Your Decks',
-                style: TextStyle(color: Colors.blueAccent, fontSize: 26),
+              leading: new IconButton(
+                icon: new Icon(Icons.arrow_back, color: Colors.black),
+                onPressed: () => Navigator.of(context).pop(),
               ),
               actions: <Widget>[
                 new FlatButton(
@@ -532,8 +529,9 @@ class _StudyYourSignUpPageState extends State<StudyYourSignUpPage> {
   }
 
   Widget _showBody() {
+    /*
     return new Scaffold(
-        backgroundColor: Colors.grey[300],
+        //backgroundColor: Colors.grey[300],
         body: _formMode == FormMode.LOGIN
             ? new Form(
                 key: _formKey,
@@ -554,8 +552,44 @@ class _StudyYourSignUpPageState extends State<StudyYourSignUpPage> {
                     _showNoteList(),
                   ],
                 ),
-              ));
+              )); */
+    return new Container(
+        margin: EdgeInsets.symmetric(vertical: 30.0, horizontal: 20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              'Your deck',
+              style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 24),
+            ),
+            _formMode == FormMode.LOGIN
+                ? new Form(
+                    key: _formKey,
+                    child: new ListView(
+                      padding: EdgeInsets.all(16.0),
+                      shrinkWrap: true,
+                      children: <Widget>[
+                        _showStudyButton(),
+                      ],
+                    ),
+                  )
+                : new Form(
+                    key: _formKey,
+                    child: new ListView(
+                      padding: EdgeInsets.all(16.0),
+                      shrinkWrap: true,
+                      children: <Widget>[
+                        _showNoteList(),
+                      ],
+                    ),
+                  )
+          ],
+        ));
   }
+
   // List that you should do today
   var todayList;
   var tomorrowList = 0;
@@ -570,12 +604,12 @@ class _StudyYourSignUpPageState extends State<StudyYourSignUpPage> {
     var today = DateTime.now();
     var tomorrow = DateTime.now();
     tomorrow = tomorrow.add(new Duration(days: 1));
-    for(int i = 0; i < _noteList.length; i++){
+    for (int i = 0; i < _noteList.length; i++) {
       var date = new DateFormat.yMd().parse(_noteList[i].today);
-      if(today.difference(date).isNegative == false){
-        todayList.add(_noteList[i]); 
+      if (today.difference(date).isNegative == false) {
+        todayList.add(_noteList[i]);
       }
-      if(tomorrow.difference(date).isNegative == false){
+      if (tomorrow.difference(date).isNegative == false) {
         tomorrowList += 1;
       }
     }
@@ -673,9 +707,15 @@ class _StudyYourSignUpPageState extends State<StudyYourSignUpPage> {
             child: new RaisedButton(
                 elevation: 3.0,
                 shape: new RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(30.0)),
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(20.0),
+                    topLeft: Radius.circular(100.0),
+                    bottomRight: Radius.circular(100.0),
+                    bottomLeft: Radius.circular(20.0),
+                  ),
+                ),
                 color: Colors.blueAccent,
-                child: Text('Estudar',
+                child: Text('Study',
                     style: new TextStyle(fontSize: 20.0, color: Colors.white)),
                 onPressed: () {
                   _formMode == FormMode.LOGIN

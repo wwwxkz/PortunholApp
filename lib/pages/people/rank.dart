@@ -135,24 +135,36 @@ class _RankPageState extends State<RankPage> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
+        elevation: 1,
         leading: new IconButton(
           icon: new Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () => Navigator.of(context).pop(),
         ),
         backgroundColor: Colors.white,
-        title: new Text(
-          'Rank',
-          style: TextStyle(color: Colors.blueAccent, fontSize: 26),
-        ),
       ),
       body: _showBody(),
     );
   }
 
   Widget _showBody() {
+    /*
     return new Scaffold(
-      backgroundColor: Colors.grey[300],
+      //backgroundColor: Colors.grey[300],
       body: _showNoteList(),
+    ); */
+    return new Container(
+      margin: EdgeInsets.symmetric(vertical: 30.0, horizontal: 20.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            'Rank',
+            style: TextStyle(
+                color: Colors.black, fontWeight: FontWeight.w600, fontSize: 24),
+          ),
+          _showNoteList()
+        ],
+      ),
     );
   }
 
@@ -169,7 +181,8 @@ class _RankPageState extends State<RankPage> {
         itemBuilder: (BuildContext context, int index) {
           var name = _noteList[index].name.toString().split(" ");
           return Card(
-              child: Container(
+            elevation: 1,
+            child: Container(
             decoration: BoxDecoration(color: Colors.white),
             child: Row(
               children: <Widget>[
@@ -180,12 +193,12 @@ class _RankPageState extends State<RankPage> {
                       style: TextStyle(
                           color: Colors.grey[850],
                           fontWeight: FontWeight.w600,
-                          fontSize: 22),
+                          fontSize: 20),
                     )),
                 IconButton(
                   color: Colors.grey,
                   icon: Icon(Icons.person),
-                  iconSize: 30,
+                  iconSize: 22,
                   onPressed: () {},
                 ),
                 SizedBox(
@@ -199,14 +212,14 @@ class _RankPageState extends State<RankPage> {
                           style: TextStyle(
                               color: Colors.grey[600],
                               fontWeight: FontWeight.w600,
-                              fontSize: 22),
+                              fontSize: 16),
                         ),
                         Text(
                           _noteList[index].points.toString(),
                           style: TextStyle(
                               color: Colors.green,
                               fontWeight: FontWeight.w600,
-                              fontSize: 22),
+                              fontSize: 18),
                         ),
                       ],
                     )),
