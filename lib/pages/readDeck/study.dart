@@ -305,50 +305,58 @@ class _StudyPageState extends State<StudyPage> {
     return Column(
       children: <Widget>[
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            new DropdownButton<String>(
-              items: <String>['Espanhol', 'Francês', 'Inglês', 'Português']
-                  .map((String value) {
-                return new DropdownMenuItem<String>(
-                  value: value,
-                  child: new Text(value),
-                );
-              }).toList(),
-              onChanged: (String value) {
-                setState(() => input1 = value);
-                if (value == "Espanhol") {
-                  flutterTts.setLanguage("es-ES");
-                }
-                if (value == "Francês") {
-                  flutterTts.setLanguage("fr-FR");
-                }
-                if (value == "Inglês") {
-                  flutterTts.setLanguage("en-US");
-                }
-                if (value == "Português") {
-                  flutterTts.setLanguage("pt-BR");
-                }
-              },
-              hint: Text(input1,
-                  style: TextStyle(
-                    color: Colors.grey[850],
-                  )),
-            ),
-            new DropdownButton<String>(
-              items: <String>['Voz 1', 'Voz 2', 'Voz 3'].map((String value) {
-                return new DropdownMenuItem<String>(
-                  value: value,
-                  child: new Text(value),
-                );
-              }).toList(),
-              onChanged: (String value) {
-                setState(() => input2 = value);
-              },
-              hint: Text(input2,
-                  style: TextStyle(
-                    color: Colors.grey[850],
-                  )),
+            SizedBox(),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                new DropdownButton<String>(
+                  items: <String>['Espanhol', 'Francês', 'Inglês', 'Português']
+                      .map((String value) {
+                    return new DropdownMenuItem<String>(
+                      value: value,
+                      child: new Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (String value) {
+                    setState(() => input1 = value);
+                    if (value == "Espanhol") {
+                      flutterTts.setLanguage("es-ES");
+                    }
+                    if (value == "Francês") {
+                      flutterTts.setLanguage("fr-FR");
+                    }
+                    if (value == "Inglês") {
+                      flutterTts.setLanguage("en-US");
+                    }
+                    if (value == "Português") {
+                      flutterTts.setLanguage("pt-BR");
+                    }
+                  },
+                  hint: Text(input1,
+                      style: TextStyle(
+                        color: Colors.grey[850],
+                      )),
+                ),
+                new DropdownButton<String>(
+                  elevation: 1,
+                  items:
+                      <String>['Voz 1', 'Voz 2', 'Voz 3'].map((String value) {
+                    return new DropdownMenuItem<String>(
+                      value: value,
+                      child: new Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (String value) {
+                    setState(() => input2 = value);
+                  },
+                  hint: Text(input2,
+                      style: TextStyle(
+                        color: Colors.grey[850],
+                      )),
+                ),
+              ],
             ),
           ],
         ),

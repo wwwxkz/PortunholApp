@@ -118,25 +118,23 @@ class _StorePageState extends State<StorePage> {
   Widget _showBody() {
     return new Container(
       margin: EdgeInsets.symmetric(vertical: 30.0, horizontal: 20.0),
-      //color: Colors.grey[300],
-      padding: EdgeInsets.only(bottom: 200),
       child: _showNoteList(),
     );
   }
 
   Widget _showNoteList() {
     return Container(
-      alignment: Alignment.topLeft,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            'Decks',
+            'Shop',
             style: TextStyle(
                 color: Colors.black, fontWeight: FontWeight.w600, fontSize: 24),
           ),
           SizedBox(height: 10),
           Text(
-            "Em breve",
+            "Soon",
             style: TextStyle(fontSize: 18, color: Colors.grey),
           ),
         ],
