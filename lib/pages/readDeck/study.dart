@@ -417,8 +417,13 @@ class _StudyPageState extends State<StudyPage> {
                                   child: new RaisedButton(
                                     elevation: 3.0,
                                     shape: new RoundedRectangleBorder(
-                                        borderRadius:
-                                            new BorderRadius.circular(10.0)),
+                                      borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(20.0),
+                                        topLeft: Radius.circular(100.0),
+                                        bottomRight: Radius.circular(100.0),
+                                        bottomLeft: Radius.circular(20.0),
+                                      ),
+                                    ),
                                     color: Colors.redAccent,
                                     child: Text('Não entendi',
                                         style: new TextStyle(
@@ -435,8 +440,13 @@ class _StudyPageState extends State<StudyPage> {
                                   child: new RaisedButton(
                                     elevation: 3.0,
                                     shape: new RoundedRectangleBorder(
-                                        borderRadius:
-                                            new BorderRadius.circular(10.0)),
+                                      borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(20.0),
+                                        topLeft: Radius.circular(100.0),
+                                        bottomRight: Radius.circular(100.0),
+                                        bottomLeft: Radius.circular(20.0),
+                                      ),
+                                    ),
                                     color: Colors.greenAccent,
                                     child: Text('Entendi',
                                         style: new TextStyle(
@@ -461,10 +471,15 @@ class _StudyPageState extends State<StudyPage> {
                           child: new RaisedButton(
                               elevation: 3.0,
                               shape: new RoundedRectangleBorder(
-                                  borderRadius:
-                                      new BorderRadius.circular(10.0)),
+                                borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(20.0),
+                                  topLeft: Radius.circular(100.0),
+                                  bottomRight: Radius.circular(100.0),
+                                  bottomLeft: Radius.circular(20.0),
+                                ),
+                              ),
                               color: Colors.grey,
-                              child: Text('Mostrar resposta',
+                              child: Text('Show answear',
                                   style: new TextStyle(
                                       fontSize: 20.0, color: Colors.white)),
                               onPressed: () {
