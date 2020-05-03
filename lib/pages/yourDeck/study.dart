@@ -529,30 +529,6 @@ class _StudyYourSignUpPageState extends State<StudyYourSignUpPage> {
   }
 
   Widget _showBody() {
-    /*
-    return new Scaffold(
-        //backgroundColor: Colors.grey[300],
-        body: _formMode == FormMode.LOGIN
-            ? new Form(
-                key: _formKey,
-                child: new ListView(
-                  padding: EdgeInsets.all(16.0),
-                  shrinkWrap: true,
-                  children: <Widget>[
-                    _showStudyButton(),
-                  ],
-                ),
-              )
-            : new Form(
-                key: _formKey,
-                child: new ListView(
-                  padding: EdgeInsets.all(16.0),
-                  shrinkWrap: true,
-                  children: <Widget>[
-                    _showNoteList(),
-                  ],
-                ),
-              )); */
     return new Container(
         margin: EdgeInsets.symmetric(vertical: 30.0, horizontal: 20.0),
         child: Column(
@@ -565,6 +541,7 @@ class _StudyYourSignUpPageState extends State<StudyYourSignUpPage> {
                   fontWeight: FontWeight.w600,
                   fontSize: 24),
             ),
+            SizedBox(height: 30),
             _formMode == FormMode.LOGIN
                 ? new Form(
                     key: _formKey,
@@ -578,7 +555,6 @@ class _StudyYourSignUpPageState extends State<StudyYourSignUpPage> {
                 : new Form(
                     key: _formKey,
                     child: new ListView(
-                      padding: EdgeInsets.all(16.0),
                       shrinkWrap: true,
                       children: <Widget>[
                         _showNoteList(),
@@ -750,7 +726,7 @@ class _StudyYourSignUpPageState extends State<StudyYourSignUpPage> {
     if (todayList.length > 0) {
       if (index < todayList.length) {
         return Center(
-            child: Column(
+          child: Column(
           children: <Widget>[
             Text(
               todayList[index].front,
@@ -762,10 +738,10 @@ class _StudyYourSignUpPageState extends State<StudyYourSignUpPage> {
                     ? new Form(
                         key: _formKey1,
                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             Text(
                               todayList[index].back,
-                              textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontSize: 30.0, color: Colors.grey[850]),
                             ),
@@ -775,8 +751,13 @@ class _StudyYourSignUpPageState extends State<StudyYourSignUpPage> {
                                   child: new RaisedButton(
                                     elevation: 3.0,
                                     shape: new RoundedRectangleBorder(
-                                        borderRadius:
-                                            new BorderRadius.circular(10.0)),
+                                      borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(20.0),
+                                        topLeft: Radius.circular(100.0),
+                                        bottomRight: Radius.circular(100.0),
+                                        bottomLeft: Radius.circular(20.0),
+                                      ),
+                                    ),
                                     color: Colors.redAccent,
                                     child: Text('Não entendi',
                                         style: new TextStyle(
@@ -794,8 +775,13 @@ class _StudyYourSignUpPageState extends State<StudyYourSignUpPage> {
                                   child: new RaisedButton(
                                     elevation: 3.0,
                                     shape: new RoundedRectangleBorder(
-                                        borderRadius:
-                                            new BorderRadius.circular(10.0)),
+                                      borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(20.0),
+                                        topLeft: Radius.circular(100.0),
+                                        bottomRight: Radius.circular(100.0),
+                                        bottomLeft: Radius.circular(20.0),
+                                      ),
+                                    ),
                                     color: Colors.greenAccent,
                                     child: Text('Entendi',
                                         style: new TextStyle(
@@ -821,8 +807,13 @@ class _StudyYourSignUpPageState extends State<StudyYourSignUpPage> {
                           child: new RaisedButton(
                               elevation: 3.0,
                               shape: new RoundedRectangleBorder(
-                                  borderRadius:
-                                      new BorderRadius.circular(10.0)),
+                                borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(20.0),
+                                  topLeft: Radius.circular(100.0),
+                                  bottomRight: Radius.circular(100.0),
+                                  bottomLeft: Radius.circular(20.0),
+                                ),
+                              ),
                               color: Colors.grey,
                               child: Text('Mostrar resposta',
                                   style: new TextStyle(
@@ -835,19 +826,17 @@ class _StudyYourSignUpPageState extends State<StudyYourSignUpPage> {
           ],
         ));
       } else {
-        return Center(
+        return Container(
             child: Text(
           "Você acabou por hoje",
-          textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 30.0, color: Colors.grey[850]),
+          style: TextStyle(fontSize: 22.0, color: Colors.grey[850]),
         ));
       }
     } else {
-      return Center(
+      return Container(
           child: Text(
         "Você ainda não tem nenhum card",
-        textAlign: TextAlign.center,
-        style: TextStyle(fontSize: 30.0, color: Colors.grey[850]),
+        style: TextStyle(fontSize: 22.0, color: Colors.grey[850]),
       ));
     }
   }
