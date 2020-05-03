@@ -569,7 +569,6 @@ class _StudyYourSignUpPageState extends State<StudyYourSignUpPage> {
                 ? new Form(
                     key: _formKey,
                     child: new ListView(
-                      padding: EdgeInsets.all(16.0),
                       shrinkWrap: true,
                       children: <Widget>[
                         _showStudyButton(),
@@ -614,119 +613,134 @@ class _StudyYourSignUpPageState extends State<StudyYourSignUpPage> {
       }
     }
     return Center(
-      child: Column(
-        children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              Text(
-                'Cards: ' + _noteList.length.toString(),
-                style: TextStyle(color: Colors.grey[850], fontSize: 20),
-              ),
-              Row(
-                children: <Widget>[
-                  Text(
-                    'Today: ',
-                    style: TextStyle(color: Colors.grey[850], fontSize: 20),
-                  ),
-                  Text(
-                    todayList.length.toString(),
-                    style: TextStyle(color: Colors.green, fontSize: 20),
-                  ),
-                ],
-              ),
-              Row(
-                children: <Widget>[
-                  Text(
-                    'Tomorrow: ',
-                    style: TextStyle(color: Colors.grey[850], fontSize: 20),
-                  ),
-                  Text(
-                    tomorrowList.toString(),
-                    style: TextStyle(color: Colors.lightBlue, fontSize: 20),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              new DropdownButton<String>(
-                items: <String>['Espanhol', 'Francês', 'Inglês', 'Português']
-                    .map((String value) {
-                  return new DropdownMenuItem<String>(
-                    value: value,
-                    child: new Text(value),
-                  );
-                }).toList(),
-                onChanged: (String value) {
-                  setState(() => input1 = value);
-                  if (value == "Espanhol") {
-                    flutterTts.setLanguage("es-ES");
-                    setState(() => lang = 'es');
-                  }
-                  if (value == "Francês") {
-                    flutterTts.setLanguage("fr-FR");
-                    setState(() => lang = 'fr');
-                  }
-                  if (value == "Inglês") {
-                    flutterTts.setLanguage("en-US");
-                    setState(() => lang = 'en');
-                  }
-                  if (value == "Português") {
-                    flutterTts.setLanguage("pt-BR");
-                    setState(() => lang = 'pt');
-                  }
-                },
-                hint: Text(input1,
-                    style: TextStyle(
-                      color: Colors.grey[850],
-                    )),
-              ),
-              new DropdownButton<String>(
-                items: <String>['Voz 1', 'Voz 2', 'Voz 3'].map((String value) {
-                  return new DropdownMenuItem<String>(
-                    value: value,
-                    child: new Text(value),
-                  );
-                }).toList(),
-                onChanged: (String value) {
-                  setState(() => input2 = value);
-                },
-                hint: Text(input2,
-                    style: TextStyle(
-                      color: Colors.grey[850],
-                    )),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 50.0,
-            width: double.infinity,
-            child: new RaisedButton(
-                elevation: 3.0,
-                shape: new RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(20.0),
-                    topLeft: Radius.circular(100.0),
-                    bottomRight: Radius.circular(100.0),
-                    bottomLeft: Radius.circular(20.0),
-                  ),
+        child: Column(
+      children: <Widget>[
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Text(
+                      'Cards: ',
+                      style: TextStyle(color: Colors.grey[850], fontSize: 18),
+                    ),
+                    Text(
+                      _noteList.length.toString(),
+                      style: TextStyle(color: Colors.black, fontSize: 18),
+                    ),
+                  ],
                 ),
-                color: Colors.blueAccent,
-                child: Text('Study',
-                    style: new TextStyle(fontSize: 20.0, color: Colors.white)),
-                onPressed: () {
-                  _formMode == FormMode.LOGIN
-                      ? _changeFormToSignUp()
-                      : _changeFormToStudyYour();
-                  _speak(todayList[index].front);
-                }),
-          ),
-        ],
-      ),
-    );
+                Row(
+                  children: <Widget>[
+                    Text(
+                      'Today: ',
+                      style: TextStyle(color: Colors.grey[850], fontSize: 18),
+                    ),
+                    Text(
+                      todayList.length.toString(),
+                      style: TextStyle(color: Colors.green, fontSize: 18),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    Text(
+                      'Tomorrow: ',
+                      style: TextStyle(color: Colors.grey[850], fontSize: 18),
+                    ),
+                    Text(
+                      tomorrowList.toString(),
+                      style: TextStyle(color: Colors.lightBlue, fontSize: 18),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                new DropdownButton<String>(
+                  elevation: 1,
+                  items: <String>['Espanhol', 'Francês', 'Inglês', 'Português']
+                      .map((String value) {
+                    return new DropdownMenuItem<String>(
+                      value: value,
+                      child: new Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (String value) {
+                    setState(() => input1 = value);
+                    if (value == "Espanhol") {
+                      flutterTts.setLanguage("es-ES");
+                      setState(() => lang = 'es');
+                    }
+                    if (value == "Francês") {
+                      flutterTts.setLanguage("fr-FR");
+                      setState(() => lang = 'fr');
+                    }
+                    if (value == "Inglês") {
+                      flutterTts.setLanguage("en-US");
+                      setState(() => lang = 'en');
+                    }
+                    if (value == "Português") {
+                      flutterTts.setLanguage("pt-BR");
+                      setState(() => lang = 'pt');
+                    }
+                  },
+                  hint: Text(input1,
+                      style: TextStyle(
+                        color: Colors.grey[850],
+                      )),
+                ),
+                new DropdownButton<String>(
+                  elevation: 1,
+                  items:
+                      <String>['Voz 1', 'Voz 2', 'Voz 3'].map((String value) {
+                    return new DropdownMenuItem<String>(
+                      value: value,
+                      child: new Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (String value) {
+                    setState(() => input2 = value);
+                  },
+                  hint: Text(input2,
+                      style: TextStyle(
+                        color: Colors.grey[850],
+                      )),
+                ),
+              ],
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 50.0,
+          width: double.infinity,
+          child: new RaisedButton(
+              elevation: 3.0,
+              shape: new RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(20.0),
+                  topLeft: Radius.circular(100.0),
+                  bottomRight: Radius.circular(100.0),
+                  bottomLeft: Radius.circular(20.0),
+                ),
+              ),
+              color: Colors.blueAccent,
+              child: Text('Study',
+                  style: new TextStyle(fontSize: 20.0, color: Colors.white)),
+              onPressed: () {
+                _formMode == FormMode.LOGIN
+                    ? _changeFormToSignUp()
+                    : _changeFormToStudyYour();
+                _speak(todayList[index].front);
+              }),
+        ),
+      ],
+    ));
   }
 
   // Show note list

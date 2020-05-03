@@ -131,7 +131,6 @@ class _ListPageState extends State<ListPage> {
         );
 
     final makeBody = Container(
-        color: Colors.white,
         margin: EdgeInsets.symmetric(vertical: 60.0, horizontal: 20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -155,6 +154,7 @@ class _ListPageState extends State<ListPage> {
         ));
 
     final bottomAppBar = BottomAppBar(
+      elevation: 20,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
@@ -217,6 +217,7 @@ class _ListPageState extends State<ListPage> {
     );
 
     return Scaffold(
+      backgroundColor: Colors.white,
       body: makeBody,
       bottomNavigationBar: bottomAppBar,
     );
